@@ -384,7 +384,6 @@
 -analyzer:"D:/UNITY/2022.3.17f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Ball.cs"
 "Assets/Tosser.cs"
-"Assets/VelocityEstimator.cs"
 -langversion:9.0
 
 /deterministic
