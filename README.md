@@ -37,10 +37,9 @@ The project is divided into the following phases:
 
 * Week 1 (Feb 6-13):
     * Conducted research on haptic gloves and ambisonic sound design.
-    * Set up GitHub and Slack accounts.
-    * Participated in team introductions.
+    * Set up of GitHub and Slack accounts.
     * Initiated work on procedural audio generation.
-    * Optimized existing game files.
+    * Optimized and cleaned existing game files.
 * Week 2 (Feb 14-21):
     * Fixed game crashing and SteamVR build issues.
     * Migrated to Unity's OpenXR rig.
