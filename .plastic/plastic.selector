@@ -1,4 +1,0 @@
-repository "VrPingPong@shadynarwall@cloud"
-  path "/"
-    br "/main"
-    co "/main"
