@@ -1,3 +1,44 @@
+using UnityEngine;
+
+public class Ball : MonoBehaviour
+{
+    public AudioSource tableBounce;
+    public AudioSource paddleBounce;
+    public AudioSource airSound;
+
+    public GameObject player;
+
+    void Awake()
+    {
+        // Gets AudioSource components from the Unity Inspector in order from top to bottom.
+        AudioSource[] audios = GetComponents<AudioSource>();
+
+        // Assigning the AudioSource components based on order.
+        tableBounce = audios.Length > 0 ? audios[0] : throw new System.IndexOutOfRangeException("TableBounce AudioSource not found.");
+        paddleBounce = audios.Length > 1 ? audios[1] : throw new System.IndexOutOfRangeException("PaddleBounce AudioSource not found.");
+        airSound = audios.Length > 2 ? audios[2] : throw new System.IndexOutOfRangeException("AirSound AudioSource not found.");
+    }
+
+      void OnCollisionEnter(Collision collision)
+    {
+        // Log the name of the object the ball collides with, for debugging.
+        Debug.Log($"Ball collided with {collision.gameObject.name}");
+
+        // Check collision by comparing the tag of the collided object.
+        // Make sure to assign these tags to your table and paddle GameObjects in the Unity Editor.
+        if (collision.gameObject.CompareTag("Table"))
+        {
+            Debug.Log("Collision with Table detected.");
+            tableBounce.Play();
+        }
+        else if (collision.gameObject.CompareTag("Paddle"))
+        {
+            Debug.Log("Collision with Paddle detected.");
+            paddleBounce.Play();
+        }
+    }
+}
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +88,7 @@ public class Ball : MonoBehaviour
                 leftHand.SendHapticImpulse(0.1f, 50f, 1 - Mathf.Pow(Vector3.Distance(player.transform.position, transform.position), 2)*0.1f); //The long part is just a formula for the intensity of the haptics
                 rightHand.SendHapticImpulse(0.1f, 50f, 1f - Mathf.Pow(Vector3.Distance(player.transform.position, transform.position), 2)*0.1f);
             }
-            */
+            /
             if (soundDelay <= 0)
             {
                 if ( airSound != null )
@@ -96,89 +137,6 @@ public class Ball : MonoBehaviour
     private void OnTriggerExit()
     {
 
-    }
-}
-
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-
-public class Ball : MonoBehaviour
-{
-    public AudioSource tableBounce;
-    public AudioSource paddleBounce;
-    public AudioSource airSound;
-
-    public XRController leftController;
-    public XRController rightController;
-    public GameObject player;
-
-    private bool uncollided = true;
-    private float soundDelay = 0;
-
-    void Awake()
-    {
-        AudioSource[] audios = GetComponents<AudioSource>();
-        tableBounce = audios[0];
-        paddleBounce = audios[1];
-        airSound = audios[2];
-        soundDelay = 0;
-    }
-
-    void Update()
-    {
-        if (transform.position.y > -100)
-        {
-            soundDelay -= Time.deltaTime;
-
-            if (true) // This condition seems redundant. You might want to replace it with the appropriate condition.
-            {
-                leftController.SendHapticImpulse(0.1f, 50f);
-                rightController.SendHapticImpulse(0.1f, 50f);
-            }
-
-            if (soundDelay <= 0)
-            {
-                if (audioSourceSetup != null && audioSourceSetup.airSound != null)
-                {
-                    audioSourceSetup.airSound.Play();
-                }
-                soundDelay = Vector3.Distance(player.transform.position, transform.position) * 0.1f;
-            }
-
-            if (soundDelay > 0.3f)
-            {
-                soundDelay = 0.3f;
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 3)
-        {
-            Destroy(gameObject);
-        }
-
-        if (uncollided)
-        {
-            if (collision.gameObject.layer == 6)
-            {
-                if ( audioSourceSetup != null && audioSourceSetup.tableBounce != null)
-                {
-                    audioSourceSetup.paddleBounce.Play();
-                }
-            }
-            if (collision.gameObject.layer == 7)
-            {
-                if (paddleBounce != null && audioSourceSetup.paddleBounce != null)
-                {
-                    audioSourceSetup.paddleBounce.Play();
-                }
-            }
-        }
     }
 }
 */

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TosserXR : MonoBehaviour
 {
     [SerializeField] private GameObject ball; // Reference to the ball prefab
-    [SerializeField] private int reload = 2; // Length of time in between each toss, set a default value
+    [SerializeField] private int reload = 4; // Length of time in between each toss, set a default value
     public float throwStrength = 10; // Strength of throws, set a default value
     private float time;
     public AudioSource launchSound; // Sound that plays every time a ball is tossed

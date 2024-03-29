@@ -2923,6 +2923,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PingPongTable
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9d87788129b84046bbadf972b281109,
+        type: 3}
+      propertyPath: m_TagString
+      value: Table
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5092,6 +5097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PingPongBat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e7a3f9ddfe36846408a76252f16400bb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Paddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9189,8 +9199,6 @@ MonoBehaviour:
   paddleBounce: {fileID: 1963062636}
   airSound: {fileID: 0}
   player: {fileID: 1737245345}
-  leftHand: {fileID: 479552843}
-  rightHand: {fileID: 1299420292}
 --- !u!82 &1963062635
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9202,7 +9210,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d21d706f3bfea2441b92fa9eed599213, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -9298,7 +9306,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0517c93deb475cf4994de09c0edb23cc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
