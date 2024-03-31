@@ -17,9 +17,13 @@ public class Ball : MonoBehaviour
         tableBounce = audios.Length > 0 ? audios[0] : throw new System.IndexOutOfRangeException("TableBounce AudioSource not found.");
         paddleBounce = audios.Length > 1 ? audios[1] : throw new System.IndexOutOfRangeException("PaddleBounce AudioSource not found.");
         airSound = audios.Length > 2 ? audios[2] : throw new System.IndexOutOfRangeException("AirSound AudioSource not found.");
+
+        // Set airSound to loop and start playing it.
+        airSound.loop = true;
+        airSound.Play();
     }
 
-      void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         // Log the name of the object the ball collides with, for debugging.
         Debug.Log($"Ball collided with {collision.gameObject.name}");
@@ -38,6 +42,10 @@ public class Ball : MonoBehaviour
         }
     }
 }
+
+
+
+
 /*
 using System.Collections;
 using System.Collections.Generic;
