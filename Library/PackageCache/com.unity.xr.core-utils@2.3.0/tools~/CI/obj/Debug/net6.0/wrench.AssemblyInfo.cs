@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("wrench")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3382d22b8858de75fa89ea6de43915240bf72621")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4702039bd8be0adccf389f14e24f81e3f3de3a96")]
 [assembly: System.Reflection.AssemblyProductAttribute("wrench")]
 [assembly: System.Reflection.AssemblyTitleAttribute("wrench")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

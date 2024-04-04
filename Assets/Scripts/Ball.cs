@@ -26,18 +26,18 @@ public class Ball : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Log the name of the object the ball collides with, for debugging.
-        Debug.Log($"Ball collided with {collision.gameObject.name}");
+        //Debug.Log($"Ball collided with {collision.gameObject.name}");
 
         // Check collision by comparing the tag of the collided object.
         // Make sure to assign these tags to your table and paddle GameObjects in the Unity Editor.
         if (collision.gameObject.CompareTag("Table"))
         {
-            Debug.Log("Collision with Table detected.");
+            //Debug.Log("Collision with Table detected.");
             tableBounce.Play();
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
-            Debug.Log("Collision with Paddle detected.");
+            //Debug.Log("Collision with Paddle detected.");
             paddleBounce.Play();
         }
     }
