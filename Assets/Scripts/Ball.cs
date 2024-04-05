@@ -24,7 +24,7 @@ public class Ball : MonoBehaviour
         airSound.Play();
 
         // Find the right XRController component
-        rightController = GameObject.FindGameObjectWithTag("RightController").GetComponent<XRController>();
+        rightController = GameObject.FindGameObjectWithTag("GameController").GetComponent<XRController>();
         if (rightController == null)
         {
             Debug.LogError("RightController not found. Make sure you have tagged your right hand controller appropriately.");
