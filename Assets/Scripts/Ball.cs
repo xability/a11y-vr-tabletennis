@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ball : MonoBehaviour
 {
@@ -8,40 +9,47 @@ public class Ball : MonoBehaviour
 
     public GameObject player;
 
+    private XRController rightController; // Reference to the right XR controller
+    public float hapticIntensity = 0.7f; // Customize the haptic intensity (adjust as needed)
+
     void Awake()
     {
-        // Gets AudioSource components from the Unity Inspector in order from top to bottom.
         AudioSource[] audios = GetComponents<AudioSource>();
 
-        // Assigning the AudioSource components based on order.
         tableBounce = audios.Length > 0 ? audios[0] : throw new System.IndexOutOfRangeException("TableBounce AudioSource not found.");
         paddleBounce = audios.Length > 1 ? audios[1] : throw new System.IndexOutOfRangeException("PaddleBounce AudioSource not found.");
         airSound = audios.Length > 2 ? audios[2] : throw new System.IndexOutOfRangeException("AirSound AudioSource not found.");
 
-        // Set airSound to loop and start playing it.
         airSound.loop = true;
         airSound.Play();
+
+        // Find the right XRController component
+        rightController = GameObject.FindGameObjectWithTag("RightController").GetComponent<XRController>();
+        if (rightController == null)
+        {
+            Debug.LogError("RightController not found. Make sure you have tagged your right hand controller appropriately.");
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Log the name of the object the ball collides with, for debugging.
-        //Debug.Log($"Ball collided with {collision.gameObject.name}");
-
-        // Check collision by comparing the tag of the collided object.
-        // Make sure to assign these tags to your table and paddle GameObjects in the Unity Editor.
         if (collision.gameObject.CompareTag("Table"))
         {
-            //Debug.Log("Collision with Table detected.");
             tableBounce.Play();
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
-            //Debug.Log("Collision with Paddle detected.");
             paddleBounce.Play();
+
+            // Trigger haptic feedback on the right XR controller
+            if (rightController != null)
+            {
+                rightController.SendHapticImpulse(0, hapticIntensity);
+            }
         }
     }
 }
+
 
 
 
