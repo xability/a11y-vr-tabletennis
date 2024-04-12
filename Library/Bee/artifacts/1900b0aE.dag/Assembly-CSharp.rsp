@@ -426,7 +426,6 @@
 "Assets/Scripts/Ball.cs"
 "Assets/Scripts/HandData.cs"
 "Assets/Scripts/MenuController.cs"
-"Assets/Scripts/pointerHandler.cs"
 "Assets/Scripts/Tosser.cs"
 "Assets/Scripts/Window_waypoint.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
