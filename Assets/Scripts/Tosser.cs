@@ -8,7 +8,6 @@ public class TosserXR : MonoBehaviour
     [SerializeField] private int reload = 4; // Length of time in between each toss, set a default value
     public float throwStrength = 10; // Strength of throws, set a default value
     private float time;
-    public AudioSource launchSound; // Sound that plays every time a ball is tossed
 
     private List<Vector3> shotspos = new List<Vector3>(); // List of positions for the tosser to be at
     private List<Vector3> shotsrot = new List<Vector3>(); // List of rotations for the tosser to have
@@ -16,11 +15,20 @@ public class TosserXR : MonoBehaviour
     private GameObject lastInstantiatedBall = null; // Reference to the last instantiated ball
     private bool canLaunch = false; // Flag to determine if the tosser can launch balls
 
+    private GameObject rightController; // Reference to the right XR controller
+
     void Awake()
     {
         shotspos.Add(new Vector3(0.004889412f, 0.74f, 1.95f));
         shotsrot.Add(new Vector3(0f, 180f, 0f));
         // Add more shot positions and rotations if needed
+
+        // Find the right XR controller GameObject
+        rightController = GameObject.FindGameObjectWithTag("RightController");
+        if (rightController == null)
+        {
+            Debug.LogError("RightController not found. Make sure you have tagged your right hand controller appropriately.");
+        }
     }
 
     void Start()
@@ -31,16 +39,16 @@ public class TosserXR : MonoBehaviour
 
     void Update()
     {
-        // Check if the paddle is being held by either controller before allowing launches
-        canLaunch = IsPaddleHeld();
+        // Check if the paddle is being held by the right controller before allowing launches
+        canLaunch = IsPaddleInteractedWith();
 
-        // Decrement the timer only if the paddle is held
+        // Decrement the timer only if the paddle is interacted with
         if (canLaunch)
         {
             time -= Time.deltaTime;
         }
 
-        // Check if it's time to toss the ball and if the paddle is held
+        // Check if it's time to toss the ball and if the paddle is interacted with
         if (time <= 0 && canLaunch)
         {
             // Delete the last instantiated ball before creating a new one
@@ -64,19 +72,15 @@ public class TosserXR : MonoBehaviour
         // Instantiate a new ball and keep a reference to it
         lastInstantiatedBall = Instantiate(ball, transform.position, transform.rotation);
         lastInstantiatedBall.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * throwStrength);
-
-        if (launchSound != null)
-        {
-            launchSound.Play();
-        }
     }
 
-    private bool IsPaddleHeld()
+    private bool IsPaddleInteractedWith()
     {
-        // Check if the paddle is being held by either controller
-        return (transform.childCount > 0); // Assuming the paddle is parented to the controller when held
+        // Check if the paddle is interacted with by the right controller
+        return (rightController != null && rightController.transform.childCount > 0); // Assuming the paddle is interacted with by the controller when held
     }
 }
+
 
 
 

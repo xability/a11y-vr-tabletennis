@@ -2102,7 +2102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 1035566873}
   meter: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &466438074
@@ -3246,6 +3246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 570410854}
   - component: {fileID: 570410853}
+  - component: {fileID: 570410855}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3284,6 +3285,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &570410855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570410852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48af5ce0433476644b5546e40f56162f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  root: {fileID: 0}
+  animator: {fileID: 0}
+  fingerBones: []
+  controller: {fileID: 0}
+  onPressAButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1389701922}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1299420286}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &674409961
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,7 +6702,7 @@ GameObject:
   - component: {fileID: 1299420292}
   m_Layer: 0
   m_Name: Right Controller
-  m_TagString: GameController
+  m_TagString: RightController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8360,6 +8405,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 5686134208185362928, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightController
+      objectReference: {fileID: 0}
     - target: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364,
         type: 3}
       propertyPath: m_Name
@@ -9481,7 +9531,6 @@ MonoBehaviour:
   ball: {fileID: 1963062626}
   reload: 4
   throwStrength: 3
-  launchSound: {fileID: 0}
 --- !u!33 &1769077219
 MeshFilter:
   m_ObjectHideFlags: 0
