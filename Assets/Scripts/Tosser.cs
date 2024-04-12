@@ -8,6 +8,8 @@ public class TosserXR : MonoBehaviour
     [SerializeField] private int reload = 4; // Length of time in between each toss, set a default value
     public float throwStrength = 10; // Strength of throws, set a default value
     private float time;
+    private float autoStartTime = 10f; // Time in seconds before automatic start
+    private bool autoStartTriggered = false; // Flag to track if automatic start has been triggered
 
     private List<Vector3> shotspos = new List<Vector3>(); // List of positions for the tosser to be at
     private List<Vector3> shotsrot = new List<Vector3>(); // List of rotations for the tosser to have
@@ -42,14 +44,23 @@ public class TosserXR : MonoBehaviour
         // Check if the paddle is being held by the right controller before allowing launches
         canLaunch = IsPaddleInteractedWith();
 
-        // Decrement the timer only if the paddle is interacted with
-        if (canLaunch)
+        // Decrement the timer only if the paddle is interacted with or if auto start has been triggered
+        if (canLaunch || autoStartTriggered)
         {
             time -= Time.deltaTime;
         }
+        else
+        {
+            // Countdown for automatic start if no interaction is detected
+            autoStartTime -= Time.deltaTime;
+            if (autoStartTime <= 0)
+            {
+                autoStartTriggered = true;
+            }
+        }
 
         // Check if it's time to toss the ball and if the paddle is interacted with
-        if (time <= 0 && canLaunch)
+        if (time <= 0 && (canLaunch || autoStartTriggered))
         {
             // Delete the last instantiated ball before creating a new one
             if (lastInstantiatedBall != null)
@@ -80,7 +91,6 @@ public class TosserXR : MonoBehaviour
         return (rightController != null && rightController.transform.childCount > 0); // Assuming the paddle is interacted with by the controller when held
     }
 }
-
 
 
 
