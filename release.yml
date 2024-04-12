@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: any-desktop
+    steps:
+      uses: actions/checkout@v2
+      uses: actions/setup-node@v2
+      run: npx semantic-release
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
