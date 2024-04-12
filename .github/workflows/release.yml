@@ -1,6 +1,4 @@
 name: Release
-
-
 jobs:
   release:
     permissions:
@@ -9,8 +7,10 @@ jobs:
       pull-requests: write
     runs-on: any-desktop
     steps:
-      uses: actions/checkout@v2
-      uses: actions/setup-node@v2
-      run: npx semantic-release
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run semantic-release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
