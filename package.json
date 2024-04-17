@@ -1,7 +1,5 @@
 {
-  "devDependencies": {
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.3",
-    "semantic-release": "^23.0.8"
-  }
+  "name": "VR Exergame",
+  "version": "0.1.1",
+  "description": "VR table tennis game for sighted & blind/low-vision users, using sound & haptics for an inclusive experience (co-designed with BLV team)."
 }
