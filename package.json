@@ -1,5 +1,15 @@
 {
   "name": "VR Exergame",
   "version": "0.1.1",
-  "description": "VR table tennis game for sighted & blind/low-vision users, using sound & haptics for an inclusive experience (co-designed with BLV team)."
+  "description": "VR table tennis game for sighted & blind/low-vision users, using sound & haptics for an inclusive experience (co-designed with BLV team).",
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  }
 }
