@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.1](https://github.com/xability/a11y_vr_exergame/compare/v1.1.0...v0.1.1) (2024-04-17)
 
-## 1.1.0 (2024-04-17)
+## 0.1.0 (2024-04-17)
 
 
 ### Features
