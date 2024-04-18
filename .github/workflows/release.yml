@@ -1,41 +1,25 @@
-on: 
-  push:
-    tags:
-      - 'v*'
-
 name: Release
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   release:
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    runs-on: any-desktop
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run semantic-release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-create-github-release:
-  name: Create Github Release
-  runs-on: desktop
-  needs: publish
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
 
-    - name: Create Release Notes
-      uses: actions/github-script@v0.0.2
-
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script:
-          await github.request('POST /repos/${{github.repository}}/releases' , {
-            tag_name: "${{github.ref}}",
-            generate_release_notes: true
-          });
+      - name: Generate Changelog and Version Bump
+        run: npx standard-version

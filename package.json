@@ -1,6 +1,6 @@
 {
   "name": "VR Exergame",
-  "version": "0.1.1",
+  "version": "0.0.0-development",
   "description": "VR table tennis game for sighted & blind/low-vision users, using sound & haptics for an inclusive experience (co-designed with BLV team).",
   "release": {
     "plugins": [
@@ -11,5 +11,21 @@
       "@semantic-release/git",
       "@semantic-release/github"
     ]
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.0.3",
+    "semantic-release": "^23.0.8"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xability/a11y_vr_exergame.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
