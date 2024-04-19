@@ -51,7 +51,7 @@ Not yet accessible for totally blind individuals.
 Found it much more accessible to low-vision individual than previous internal version.
 
 #### Improvements
-Would have liked the continuous sound to be included as well.
+* Would have liked the continuous sound to be included as well.
 
 
 
