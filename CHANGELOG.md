@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file. See [standa
 * Wanted a menu for changing contrasts based on preference.
 * Wanted audio cues for guidance.
 * Continuous sound inclusion
+
 Not yet accessible for totally blind individuals.
 
 ### OK
@@ -48,6 +49,7 @@ Not yet accessible for totally blind individuals.
 * Could see the red line to aim at the paddle
 * Could hit the ball, since he could see it coming.
 * Liked the ‘pop’ sound generated when the person hit the ball instead of the paddle
+
 Found it much more accessible to low-vision individual than previous internal version.
 
 #### Improvements
