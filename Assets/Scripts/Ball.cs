@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
     public AudioSource tableBounce;
     public AudioSource paddleBounce;
     public AudioSource airSound;
+    public AudioSource bodyHit; // New AudioSource for body hit effect
+
 
     public GameObject player;
 
@@ -19,9 +21,10 @@ public class Ball : MonoBehaviour
         tableBounce = audios.Length > 0 ? audios[0] : throw new System.IndexOutOfRangeException("TableBounce AudioSource not found.");
         paddleBounce = audios.Length > 1 ? audios[1] : throw new System.IndexOutOfRangeException("PaddleBounce AudioSource not found.");
         airSound = audios.Length > 2 ? audios[2] : throw new System.IndexOutOfRangeException("AirSound AudioSource not found.");
+        bodyHit = audios.Length > 3 ? audios[3] : throw new System.IndexOutOfRangeException("BodyHit AudioSource not found."); // New AudioSource
 
-        airSound.loop = true;
-        airSound.Play();
+        //airSound.loop = true;
+        //airSound.Play();
 
         // Find the right XRController component
         rightController = GameObject.FindGameObjectWithTag("GameController").GetComponent<XRController>();
@@ -41,10 +44,25 @@ public class Ball : MonoBehaviour
         {
             paddleBounce.Play();
 
-            // Trigger haptic feedback on the right XR controller
+            // Trigger haptic feedback on the right XR controller if it's available
             if (rightController != null)
             {
                 rightController.SendHapticImpulse(0, hapticIntensity);
+            }
+            else
+            {
+                Debug.LogWarning("RightController is null. Haptic feedback cannot be triggered.");
+            }
+        }
+        else if (collision.gameObject.CompareTag("Player")) // Check for collision with "Player" tagged object
+        {
+            if (bodyHit != null)
+            {
+                bodyHit.Play();
+            }
+            else
+            {
+                Debug.LogWarning("BodyHit AudioSource is null. Cannot play audio.");
             }
         }
     }

@@ -8,7 +8,7 @@ public class TosserXR : MonoBehaviour
     [SerializeField] private int reload = 4; // Length of time in between each toss, set a default value
     public float throwStrength = 10; // Strength of throws, set a default value
     private float time;
-    private float autoStartTime = 10f; // Time in seconds before automatic start
+    private float autoStartTime = 12f; // Time in seconds before automatic start
     private bool autoStartTriggered = false; // Flag to track if automatic start has been triggered
 
     private List<Vector3> shotspos = new List<Vector3>(); // List of positions for the tosser to be at
