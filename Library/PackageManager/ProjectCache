@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472728729660992
-    m_Hash: 185554952
+      ticks: 638490516051937665
+    m_Hash: 2369899881
   m_LockFileStatus:
     m_FilePath: C:/Users/sunny/Documents/GitHub/a11y_vr_exergame/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472728729729397
-    m_Hash: 705257939
+      ticks: 638490516051947638
+    m_Hash: 855404629
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -49,12 +49,14 @@ m_ResolvedPackages:
     - 59.0.0
     - 60.0.0
     - 63.0.0
+    - 64.0.0
     compatible:
     - 56.0.0-preview
     - 57.0.0-preview
     - 59.0.0
     - 60.0.0
     - 63.0.0
+    - 64.0.0
     recommended: 
     deprecated: []
   dependencies: []
@@ -796,6 +798,7 @@ m_ResolvedPackages:
     - 1.4.1
     - 1.4.2
     - 1.4.3
+    - 1.4.4
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -815,6 +818,7 @@ m_ResolvedPackages:
     - 1.4.1
     - 1.4.2
     - 1.4.3
+    - 1.4.4
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -1248,6 +1252,7 @@ m_ResolvedPackages:
     - 1.0.0
     - 3.0.0-exp.1
     - 3.0.0-exp.3
+    - 3.0.0-exp.4
     compatible:
     - 1.0.0
     recommended: 1.0.0
@@ -1344,9 +1349,11 @@ m_ResolvedPackages:
     - 1.9.0
     - 1.9.1
     - 1.9.2
+    - 1.9.4
     compatible:
     - 1.9.2
-    recommended: 1.9.2
+    - 1.9.4
+    recommended: 1.9.4
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -1453,6 +1460,7 @@ m_ResolvedPackages:
     - 2.5.1
     - 2.5.2
     - 2.5.3
+    - 2.5.4
     - 3.0.0-pre.1
     - 3.0.0-pre.2
     - 3.0.0
@@ -1460,11 +1468,12 @@ m_ResolvedPackages:
     compatible:
     - 2.5.2
     - 2.5.3
+    - 2.5.4
     - 3.0.0-pre.1
     - 3.0.0-pre.2
     - 3.0.0
     - 3.0.1
-    recommended: 2.5.3
+    recommended: 2.5.4
     deprecated: []
   dependencies:
   - name: com.unity.inputsystem
