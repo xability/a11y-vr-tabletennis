@@ -1,3 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+
+
+public enum State { InHand , Idle , grab }
+
+public class paddleAttacher : MonoBehaviour {
+    State state;
+    //rb= GetComponent<Rigidbody>();
+
+    //public float padSpeed = 1.0f;
+    //public XRGrabInteractable xrGrabInteractable; // Reference to XR Grab Interactable component
+    [SerializeField] private Transform playerHand;
+    private void Start()
+    {
+        state = State.Idle;
+    }
+    private void Update()
+    {
+        switch(state) {
+            case State.InHand:
+                {
+                    Debug.Log("you are already holding the paddle");
+                }
+                break;
+            case State.grab: 
+                {
+                    if (Vector3.SqrMagnitude(playerHand.position - transform.position) > 16)
+                    {
+                        Vector3 dir = (playerHand.position - transform.position).normalized;
+                        //GrabPaddle();
+                    }
+                    else { 
+                        state = State.Idle;
+                    }
+                }
+                break;
+            case State.Idle:
+                {
+                    Debug.Log("you are not holding the paddle");
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HoldPaddle() {
+        state = State.InHand;    
+    }
+    public void IdelPosition() { 
+        state = State.Idle;
+    }
+    public void grab() { 
+        state = State.grab;
+    }
+
+    /*
+    [System.Obsolete]
+    public void HoldGrab()
+    {
+        xrGrabInteractable.selectingInteractor = null; // Release the paddle from any previous interactions
+        xrGrabInteractable.AttachToHand(playerHand.gameObject); // Attach the paddle to the hand
+        state = State.InHand; // Update state to indicate the paddle is grabbed
+    }
+    */
+}
+
+/*
+ * doesnt work either ;(
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -36,7 +108,7 @@ public class PaddleGrabber : MonoBehaviour
         }
     }
 }
-
+*/
 
 
 /*
