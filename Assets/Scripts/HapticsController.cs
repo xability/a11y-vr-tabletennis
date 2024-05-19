@@ -1,6 +1,6 @@
 
 
-//working script for the haptics start function/
+///working script for the haptics start function/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -23,9 +23,7 @@ public class HapticsController : MonoBehaviour
     }
 
 }
-
 /*
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

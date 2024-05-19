@@ -1,22 +1,3 @@
-fileFormatVersion: 2
-guid: 0e0ae5c0da645a64aacc05b6d631e2c9
-TrueTypeFontImporter:
-  externalObjects: {}
-  serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
-  characterSpacing: 0
-  characterPadding: 1
-  includeFontData: 1
-  fontName: Spoqa Han Sans Neo
-  fontNames:
-  - Spoqa Han Sans Neo
-  fallbackFontReferences: []
-  customCharacters: 
-  fontRenderingMode: 0
-  ascentCalculationMode: 1
-  useLegacyBoundsCalculation: 0
-  shouldRoundAdvanceValue: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+version https://git-lfs.github.com/spec/v1
+oid sha256:ee89d64d7dacf469bde4ccdab7c5dcf6a89fe3d40dd761133395b963c46bf5d3
+size 536
