@@ -7,6 +7,7 @@ TagManager:
   - Table
   - Paddle
   - RightController
+  - sceneBall
   layers:
   - Default
   - TransparentFX

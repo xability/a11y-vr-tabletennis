@@ -1,3 +1,68 @@
+
+using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+
+public class PaddleFlyToHand : MonoBehaviour
+{
+    public XRController controller; // XR Controller component attached to the right hand
+    public GameObject paddle; // Reference to the paddle object
+
+    void Start()
+    {
+        // Try to automatically find and assign the controller
+        AssignControllerAutomatically();
+    }
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
+        if (controller == null)
+        {
+            Debug.LogError("Controller not assigned!");
+            return;
+        }
+
+        // Assuming that 'A' button is the primary button
+        if (controller.inputDevice.IsPressed(InputHelpers.Button.PrimaryButton, out bool isPressed) && isPressed)
+        {
+            // Paddle flies to hand
+            paddle.transform.position = controller.transform.position;
+        }
+    }
+
+    // This method attempts to find and assign the controller automatically
+    void AssignControllerAutomatically()
+    {
+        var foundControllers = FindObjectsOfType<XRController>();
+        foreach (var foundController in foundControllers)
+        {
+            // Check if this is the right-hand controller, you might want to check tags or names
+            if (foundController.GetComponent<XRController>().controllerNode == XRNode.RightHand)
+            {
+                controller = foundController;
+                break;
+            }
+            {
+                controller = foundController;
+                break;
+            }
+        }
+
+        if (controller == null)
+        {
+            Debug.LogError("Right-hand controller could not be found. Please ensure it's in the scene and properly tagged or named.");
+        }
+    }
+}
+// working script ends here
+
+
+/*
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -13,11 +78,11 @@ public class PaddleGrabber : MonoBehaviour
 
     void Start()
     {
-        // Assign the controller at startup
+        // Attempt to assign the controller at startup
         AssignController();
     }
 
-    private void Update()
+    void Update()
     {
         if (controller == null)
         {
@@ -39,14 +104,11 @@ public class PaddleGrabber : MonoBehaviour
 
     private void TryGrabPaddle()
     {
-        // Perform a spherecast from the controller's position and forward direction
         RaycastHit hit;
         if (Physics.SphereCast(controller.transform.position, grabDistance, controller.transform.forward, out hit, grabDistance, interactableLayer))
         {
-            // Check if the hit object has the "Paddle" tag
             if (hit.collider.CompareTag("Paddle"))
             {
-                // Attempt to grab the paddle
                 grabbedInteractable = hit.collider.GetComponent<XRBaseInteractable>();
                 if (grabbedInteractable != null)
                 {
@@ -58,7 +120,6 @@ public class PaddleGrabber : MonoBehaviour
 
     private void AttachPaddleToController()
     {
-        // Attach paddle to the controller
         grabbedInteractable.transform.SetParent(controller.transform);
         grabbedInteractable.transform.localPosition = Vector3.zero; // Position relative to the controller
         grabbedInteractable.transform.localRotation = Quaternion.identity; // Align rotation with the controller
@@ -66,16 +127,104 @@ public class PaddleGrabber : MonoBehaviour
 
     private void AssignController()
     {
-        // Automatically find the right hand controller by tag or name
-        var rightHandController = GameObject.FindWithTag("GameController");
+        // Try to find the right hand controller by tag or name
+        var rightHandController = GameObject.FindWithTag("GameController"); // Ensure this tag is correct
 
-        if (controller == null)
+        if (rightHandController != null)
         {
-            Debug.LogError("Failed to find Right Hand Controller.");
+            controller = rightHandController.GetComponent<XRController>();
+            if (controller == null)
+            {
+                Debug.LogError("XRController component not found on the Right Hand Controller.");
+            }
         }
-        controller = rightHandController.GetComponent<XRController>();
+        else
+        {
+            Debug.LogError("Failed to find Right Hand Controller object with tag 'GameController'.");
+        }
     }
 }
+*/
+
+
+// using UnityEngine;
+// using UnityEngine.XR;
+// using UnityEngine.XR.Interaction.Toolkit;
+
+// public class PaddleGrabber : MonoBehaviour
+// {
+//     public InputHelpers.Button grabButton = InputHelpers.Button.PrimaryButton; // Default to A button
+//     public XRController controller; // XR Controller component attached to the right hand
+//     public float grabDistance = 0.1f; // Distance for the sphere cast
+//     public LayerMask interactableLayer; // Ensure this is set to the layer your paddle is on
+
+//     private XRBaseInteractable grabbedInteractable; // Reference to the grabbed interactable (paddle)
+
+//     void Start()
+//     {
+//         // Assign the controller at startup
+//         AssignController();
+//     }
+
+//     private void Update()
+//     {
+//         if (controller == null)
+//         {
+//             Debug.LogWarning("Controller not assigned!");
+//             return;
+//         }
+
+//         if (!controller.inputDevice.isValid)
+//         {
+//             Debug.LogWarning("Input device not valid!");
+//             return;
+//         }
+
+//         if (controller.inputDevice.IsPressed(grabButton, out bool isPressed) && isPressed)
+//         {
+//             TryGrabPaddle();
+//         }
+//     }
+
+//     private void TryGrabPaddle()
+//     {
+//         // Perform a spherecast from the controller's position and forward direction
+//         RaycastHit hit;
+//         if (Physics.SphereCast(controller.transform.position, grabDistance, controller.transform.forward, out hit, grabDistance, interactableLayer))
+//         {
+//             // Check if the hit object has the "Paddle" tag
+//             if (hit.collider.CompareTag("Paddle"))
+//             {
+//                 // Attempt to grab the paddle
+//                 grabbedInteractable = hit.collider.GetComponent<XRBaseInteractable>();
+//                 if (grabbedInteractable != null)
+//                 {
+//                     AttachPaddleToController();
+//                 }
+//             }
+//         }
+//     }
+
+//     private void AttachPaddleToController()
+//     {
+//         // Attach paddle to the controller
+//         grabbedInteractable.transform.SetParent(controller.transform);
+//         grabbedInteractable.transform.localPosition = Vector3.zero; // Position relative to the controller
+//         grabbedInteractable.transform.localRotation = Quaternion.identity; // Align rotation with the controller
+//     }
+
+//     private void AssignController()
+//     {
+//         // Automatically find the right hand controller by tag or name
+//         var rightHandController = GameObject.FindWithTag("GameController");
+
+//         if (controller == null)
+//         {
+//             Debug.LogError("Failed to find Right Hand Controller.");
+//         }
+//         controller = rightHandController.GetComponent<XRController>();
+//     }
+// }
 
 
 /*

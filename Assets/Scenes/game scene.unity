@@ -5495,12 +5495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be457595aa007948a0d2335d4dfb76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButton: 6
   controller: {fileID: 0}
-  grabDistance: 1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  paddle: {fileID: 0}
 --- !u!1 &1050793470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6457,11 +6453,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287870828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e0aafc49c4d7745b4ee262aad9f951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 1963062626}
+  player: {fileID: 1737245345}
+  tableHeight: 0.232
+  minDistance: 0.5
+  maxDistance: 15
+  minIntensity: 1
+  maxIntensity: 100
+  durationMillis: 250
 --- !u!1 &1299420286
 GameObject:
   m_ObjectHideFlags: 0
@@ -7159,12 +7163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be457595aa007948a0d2335d4dfb76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButton: 6
   controller: {fileID: 0}
-  grabDistance: 0.1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  paddle: {fileID: 0}
 --- !u!1 &1312039119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9053,7 +9053,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_Intensity: 1.07
+  m_Intensity: 5.75
   m_Range: 15.658054
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9375,9 +9375,10 @@ GameObject:
   - component: {fileID: 1963062635}
   - component: {fileID: 1963062637}
   - component: {fileID: 1963062638}
+  - component: {fileID: 1963062639}
   m_Layer: 0
   m_Name: ball
-  m_TagString: Untagged
+  m_TagString: sceneBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10072,6 +10073,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1963062639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963062626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e0aafc49c4d7745b4ee262aad9f951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 1963062626}
+  player: {fileID: 1737245345}
+  tableHeight: 0.232
+  minDistance: 0.5
+  maxDistance: 6
+  minIntensity: 1
+  maxIntensity: 100
+  durationMillis: 250
 --- !u!1 &2021339523
 GameObject:
   m_ObjectHideFlags: 0
@@ -10352,7 +10373,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_Intensity: 1.07
+  m_Intensity: 5.75
   m_Range: 15.658054
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10523,13 +10544,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 568684485}
+  - {fileID: 1963062631}
   - {fileID: 976824681}
   - {fileID: 1356365242}
   - {fileID: 31050137}
   - {fileID: 1737245348}
   - {fileID: 563120583}
   - {fileID: 1035566867}
-  - {fileID: 1963062631}
   - {fileID: 1769077220}
   - {fileID: 1074701098}
   - {fileID: 1287870831}
