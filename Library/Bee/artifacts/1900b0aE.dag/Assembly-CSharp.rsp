@@ -429,6 +429,7 @@
 "Assets/Lets Make a VR Game/UI 3D Examples/UI_3D/Scripts/XRLever.cs"
 "Assets/Lets Make a VR Game/UI 3D Examples/UI_3D/Scripts/XRPushButton.cs"
 "Assets/Lets Make a VR Game/UI 3D Examples/UI_3D/Scripts/XRSlider.cs"
+"Assets/Scripts/AudioGuide.cs"
 "Assets/Scripts/Ball.cs"
 "Assets/Scripts/HandData.cs"
 "Assets/Scripts/HapticsController.cs"

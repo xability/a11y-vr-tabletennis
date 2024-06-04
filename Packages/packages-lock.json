@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.meta.xr.sdk.audio": {
-      "version": "63.0.0",
+      "version": "file:C:/Users/kamat/Downloads/Installation exe/com.meta.xr.sdk.audio-65.0.0.tgz",
       "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
+      "source": "local-tarball",
+      "dependencies": {}
     },
     "com.unity.burst": {
       "version": "1.8.12",

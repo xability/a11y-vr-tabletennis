@@ -1,4 +1,89 @@
+using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
+public class PaddleFlyToHand : MonoBehaviour
+{
+    public XRController controller; // XR Controller component attached to the right hand
+    public GameObject paddle; // Reference to the paddle object
+    private bool paddlePickedUp = false; // Flag to check if the paddle has been picked up
+    private AudioSource paddleAudioSource; // Audio source component on the paddle
+
+    void Start()
+    {
+        // Try to automatically find and assign the controller
+        AssignControllerAutomatically();
+        // Get the AudioSource from the paddle
+        paddleAudioSource = paddle.GetComponent<AudioSource>();
+        if (paddleAudioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on the paddle. Please add one.");
+        }
+    }
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
+        if (controller == null)
+        {
+            Debug.LogError("Controller not assigned!");
+            return;
+        }
+
+        // Check if the paddle has already been picked up
+        if (paddlePickedUp)
+        {
+            return; // Ignore input if the paddle is already picked up
+        }
+
+        // Assuming that 'A' button is the primary button
+        if (controller.inputDevice.IsPressed(InputHelpers.Button.PrimaryButton, out bool isPressed) && isPressed)
+        {
+            // Paddle flies to hand
+            paddle.transform.position = controller.transform.position;
+            paddlePickedUp = true; // Set the flag as picked up
+            // Stop the audio if the paddle is picked up
+            if (paddleAudioSource != null)
+            {
+                paddleAudioSource.Stop();
+            }
+        }
+    }
+
+    // This method attempts to find and assign the controller automatically
+    void AssignControllerAutomatically()
+    {
+        var foundControllers = FindObjectsOfType<XRController>();
+        foreach (var foundController in foundControllers)
+        {
+            // Check if this is the right-hand controller
+            if (foundController.GetComponent<XRController>().controllerNode == XRNode.RightHand)
+            {
+                controller = foundController;
+                break;
+            }
+        }
+
+        if (controller == null)
+        {
+            Debug.LogError("Right-hand controller could not be found. Please ensure it's in the scene and properly tagged or named.");
+        }
+    }
+
+    public void ResetPaddlePickup()
+    {
+        // Method to reset the pickup state
+        paddlePickedUp = false;
+    }
+}
+
+
+
+/* //Dhruv's Latest Version
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -60,7 +145,7 @@ public class PaddleFlyToHand : MonoBehaviour
     }
 }
 // working script ends here
-
+*/
 
 /*
 using UnityEngine;
