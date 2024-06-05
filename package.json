@@ -1,6 +1,6 @@
 {
   "name": "VR Exergame",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "VR table tennis game for sighted & blind/low-vision users, using sound & haptics for an inclusive experience (co-designed with BLV team).",
   "release": {
     "plugins": [
