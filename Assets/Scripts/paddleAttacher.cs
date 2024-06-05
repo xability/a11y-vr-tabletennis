@@ -5,6 +5,121 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PaddleFlyToHand : MonoBehaviour
 {
     public XRController controller; // XR Controller component attached to the right hand
+    public GameObject Paddle; // Reference to the paddle object
+    private bool paddlePickedUp = false; // Flag to check if the paddle has been picked up
+    private AudioSource paddleAudioSource; // Audio source component on the paddle
+    public XRController manualAssignedController;
+
+    void Start()
+    {
+        // Try to automatically find and assign the controller
+        AssignControllerAutomatically();
+
+        // Get the AudioSource from the paddle
+        if (!Paddle.TryGetComponent<AudioSource>(out paddleAudioSource))
+        {
+            Debug.LogError("AudioSource component is missing on the paddle. Please add one.");
+        }
+        else
+        {
+            // Ensure the audio source is set to loop
+            paddleAudioSource.loop = true;
+            // Start playing the audio immediately
+            paddleAudioSource.Play();
+            Debug.Log("Audio should be playing now.");
+        }
+
+        if (controller == null)
+        {
+            if (manualAssignedController != null)
+            {
+                controller = manualAssignedController;
+                Debug.Log("Manually assigned controller used.");
+            }
+            else
+            {
+                Debug.LogError("Controller not assigned and no manual controller provided.");
+            }
+        }
+    }
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
+        if (controller == null)
+        {
+            Debug.LogError("Controller not assigned!");
+            return;
+        }
+
+        if (controller.inputDevice.IsPressed(InputHelpers.Button.PrimaryButton, out bool isPressed))
+        {
+            Debug.Log($"Primary button pressed: {isPressed}");
+        }
+
+        if (paddlePickedUp)
+        {
+            return; // Ignore input if the paddle is already picked up
+        }
+
+        if (isPressed)
+        {
+            Paddle.transform.position = controller.transform.position;
+            paddlePickedUp = true; // Set the flag as picked up
+
+            if (paddleAudioSource != null && paddleAudioSource.isPlaying)
+            {
+                paddleAudioSource.Stop();
+                Debug.Log("Audio should stop now.");
+            }
+        }
+    }
+
+    void AssignControllerAutomatically()
+    {
+        // This will attempt to find an XRController assigned to the right hand.
+        XRController[] controllers = FindObjectsOfType<XRController>();
+        foreach (XRController foundController in controllers)
+        {
+            if (foundController.controllerNode == XRNode.RightHand)
+            {
+                controller = foundController;
+                Debug.Log("Right-hand controller found and assigned.");
+                return;
+            }
+        }
+
+        // If no right-hand controller is found, log an error.
+        Debug.LogError("Right-hand controller could not be found. Please ensure it's in the scene and properly tagged or named.");
+    }
+
+    public void ResetPaddlePickup()
+    {
+        paddlePickedUp = false;
+        if (paddleAudioSource != null && !paddleAudioSource.isPlaying)
+        {
+            paddleAudioSource.Play();
+            Debug.Log("Audio should start again.");
+        }
+    }
+}
+
+
+
+
+
+/* Sound not looping but playing 
+using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+
+public class PaddleFlyToHand : MonoBehaviour
+{
+    public XRController controller; // XR Controller component attached to the right hand
     public GameObject paddle; // Reference to the paddle object
     private bool paddlePickedUp = false; // Flag to check if the paddle has been picked up
     private AudioSource paddleAudioSource; // Audio source component on the paddle
@@ -81,7 +196,7 @@ public class PaddleFlyToHand : MonoBehaviour
     }
 }
 
-
+*/
 
 /* //Dhruv's Latest Version
 using UnityEngine;

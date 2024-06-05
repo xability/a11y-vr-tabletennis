@@ -5500,7 +5500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  paddle: {fileID: 0}
+  Paddle: {fileID: 1035566868}
+  manualAssignedController: {fileID: 0}
 --- !u!82 &1035566879
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5511,11 +5512,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7eacb2e8acd735b4b88ff5c69c2b5af5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de7dcc0635274dc48a58c3d46de31bea, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7264,7 +7265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  paddle: {fileID: 0}
+  Paddle: {fileID: 0}
+  manualAssignedController: {fileID: 0}
 --- !u!1 &1312039119
 GameObject:
   m_ObjectHideFlags: 0

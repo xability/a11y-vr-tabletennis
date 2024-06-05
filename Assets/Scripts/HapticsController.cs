@@ -45,7 +45,7 @@ public class HapticsController : MonoBehaviour
 
     int CalculateHapticIntensity(float distance)
     {
-        Debug.Log($"Distance: {distance}, Min Distance: {minDistance}, Max Distance: {maxDistance}");
+        //Debug.Log($"Distance: {distance}, Min Distance: {minDistance}, Max Distance: {maxDistance}");
          
         if (maxDistance <= minDistance)
         {
@@ -58,8 +58,8 @@ public class HapticsController : MonoBehaviour
             float normalizedDistance = (distance - minDistance) / (maxDistance - minDistance);
             float intensity = Mathf.Lerp(maxIntensity, minIntensity, normalizedDistance);
 
-            Debug.Log($"Normalized Distance: {normalizedDistance}");
-            Debug.Log($"Calculated Intensity: {intensity}");
+            //Debug.Log($"Normalized Distance: {normalizedDistance}");
+            //Debug.Log($"Calculated Intensity: {intensity}");
 
             return Mathf.RoundToInt(intensity);
         }
