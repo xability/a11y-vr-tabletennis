@@ -2,6 +2,64 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public class PaddleFlytoHand : MonoBehaviour
+{
+    [SerializeField] private XRController rightHandController; // Ensure this is assigned in the Unity Inspector
+    public GameObject paddle; // Reference to the paddle
+    public AudioSource audioSource; // AudioSource attached to the paddle
+
+    private bool isPaddlePickedUp = false;
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
+        if (rightHandController == null)
+        {
+            Debug.LogError("Controller not assigned!");
+            return;
+        }
+
+        // Check if the trigger button is pressed
+        rightHandController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerPressed);
+        if (triggerPressed && !isPaddlePickedUp)
+        {
+            Ray ray = new Ray(rightHandController.transform.position, rightHandController.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject == paddle)
+                {
+                    // Paddle is picked up
+                    PaddlePickedUp();
+                }
+            }
+        }
+    }
+
+    void PaddlePickedUp()
+    {
+        isPaddlePickedUp = true;
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            Debug.Log("Audio stopped as the paddle was picked up.");
+        }
+        // Further logic for what happens when the paddle is picked up
+    }
+}
+
+
+
+
+/* LATEST CODE
+using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+
 public class PaddleFlyToHand : MonoBehaviour
 {
     public XRController controller; // XR Controller component attached to the right hand
@@ -29,6 +87,7 @@ public class PaddleFlyToHand : MonoBehaviour
             Debug.Log("Audio should be playing now.");
         }
 
+        
         if (controller == null)
         {
             if (manualAssignedController != null)
@@ -41,6 +100,7 @@ public class PaddleFlyToHand : MonoBehaviour
                 Debug.LogError("Controller not assigned and no manual controller provided.");
             }
         }
+       
     }
 
     void Update()
@@ -70,6 +130,7 @@ public class PaddleFlyToHand : MonoBehaviour
         {
             Paddle.transform.position = controller.transform.position;
             paddlePickedUp = true; // Set the flag as picked up
+
 
             if (paddleAudioSource != null && paddleAudioSource.isPlaying)
             {
@@ -107,7 +168,7 @@ public class PaddleFlyToHand : MonoBehaviour
         }
     }
 }
-
+*/
 
 
 

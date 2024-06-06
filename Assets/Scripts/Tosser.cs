@@ -8,7 +8,7 @@ public class TosserXR : MonoBehaviour
 {
     [SerializeField] private GameObject ball; // Reference to the ball prefab
     [SerializeField] private int reload = 4; // Length of time in between each toss, set a default value
-    public float throwStrength = 10; // Strength of throws, set a default value
+    public float throwStrength = 100; // Strength of throws, set a default value
     private float time;
     private float autoStartTime = 12f; // Time in seconds before automatic start
     private bool autoStartTriggered = false; // Flag to track if automatic start has been triggered
@@ -76,6 +76,7 @@ public class TosserXR : MonoBehaviour
         }
     }
 
+    
     private void TossObject()
     {
         int rand = Random.Range(0, shotspos.Count);
@@ -86,6 +87,39 @@ public class TosserXR : MonoBehaviour
         lastInstantiatedBall = Instantiate(ball, transform.position, transform.rotation);
         lastInstantiatedBall.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * throwStrength);
     }
+    
+
+
+    /*
+    private void TossObject()
+    {
+        // Randomly determine the x position (left-right variance)
+        float randomX = Random.Range(-0.01f, 0.01f);  // Adjust range as necessary
+
+        // Randomly determine the y position (height variance)
+        float randomY = Random.Range(0.3f, 0.5f);  // Adjust range to ensure it's always above the table height
+
+        // Set a fixed z position that ensures the ball moves forward
+        float fixedZ = 0.5f;  // Set according to your scene setup
+
+        // Calculate the new position based on random x, y and fixed z
+        Vector3 tossPosition = new Vector3(randomX, randomY, fixedZ) + transform.position;
+
+        // Set the rotation to face the target area
+        transform.LookAt(new Vector3(0, 0.5f, 0));  // Adjust target position based on your game design
+
+        // Instantiate a new ball
+        if (lastInstantiatedBall != null)
+        {
+            Destroy(lastInstantiatedBall);
+        }
+        lastInstantiatedBall = Instantiate(ball, tossPosition, transform.rotation);
+
+        // Apply forward velocity adjusted by throw strength
+        Vector3 forwardDirection = transform.forward + new Vector3(randomX, randomY - 0.5f, 0).normalized;
+        lastInstantiatedBall.GetComponent<Rigidbody>().velocity = forwardDirection * throwStrength;
+    }
+    */
 
     private bool IsPaddleInteractedWith()
     {
@@ -93,7 +127,7 @@ public class TosserXR : MonoBehaviour
         return (rightController != null && rightController.transform.childCount > 0); // Assuming the paddle is interacted with by the controller when held
     }
 }
-
+    
 
 
 /*
