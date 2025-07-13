@@ -1,5 +1,66 @@
-Library/* filter=lfs diff=lfs merge=lfs -text
-*.dylib filter=lfs diff=lfs merge=lfs -text
-inject-a-pass-using-a-scriptable-renderer-feature.md filter=lfs diff=lfs merge=lfs -text
-*.cubemap filter=lfs diff=lfs merge=lfs -text
-*.meta filter=lfs diff=lfs merge=lfs -text
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Unity specific files
+*.cs text eol=crlf
+*.unity text eol=crlf
+*.asset text eol=crlf
+*.prefab text eol=crlf
+*.mat text eol=crlf
+*.meta text eol=crlf
+*.json text eol=crlf
+*.xml text eol=crlf
+*.txt text eol=crlf
+*.md text eol=crlf
+
+# Binary files (should not be modified)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.rar binary
+*.7z binary
+*.dll binary
+*.exe binary
+*.apk binary
+*.aab binary
+*.fbx binary
+*.obj binary
+*.tga binary
+*.tif binary
+*.tiff binary
+*.hdr binary
+*.exr binary
+*.cubemap binary
+*.physicMaterial binary
+
+# Scripts
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+*.pdf binary
+
+# Build artifacts (should be ignored)
+build/ binary
+android_build/ binary
+Library/ binary
+Temp/ binary
+Logs/ binary
+obj/ binary
+.vs/ binary
+.vscode/ binary
+*.csproj text eol=crlf
+*.sln text eol=crlf
